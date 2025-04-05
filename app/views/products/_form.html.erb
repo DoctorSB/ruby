@@ -1,0 +1,41 @@
+<%= form_with(model: product, local: true) do |form| %>
+  <% if product.errors.any? %>
+    <div id="error_explanation">
+      <h2>Эти ошибки не позволили сохранить продукт:</h2>
+      <ul>
+        <% product.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name, "Имя" %>
+    <%= form.text_field :name, placeholder: "Введите название продукта" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description, "Описание" %>
+    <%= form.text_area :description, placeholder: "Введите описание продукта" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :price, "Цена (в рублях)" %>
+    <%= form.number_field :price, step: 0.01, placeholder: "Укажите цену продукта" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :category, "Категория" %>
+    <%= form.select :category, options_for_select(['мокрый', 'сухой', 'вкусный', 'подходит людям'], product.category) %>
+  </div>
+
+  <div class="field">
+    <%= form.label :comments, "Комментарий" %>
+    <%= form.text_area :comments, placeholder: "Добавьте комментарий (необязательно)" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Сохранить продукт", class: "btn btn-primary" %>
+  </div>
+<% end %>

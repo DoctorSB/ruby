@@ -1,0 +1,18 @@
+<p class="notice" style="color: green"><%= notice %></p>
+
+<h1><%= @product.name %></h1>
+
+<div class="product-container">
+  <p><strong>Описание:</strong> <%= @product.description %></p>
+  <p><strong>Цена:</strong> <%= number_to_currency(@product.price, unit: "руб.", format: "%n %u") %></p>
+  <p><strong>Категория:</strong> <%= @product.category %></p>
+  <p><strong>Комментарий:</strong> <%= @product.comments.present? ? @product.comments : "Комментариев пока нет" %></p>
+</div>
+
+<div class="actions">
+  <%= link_to "Изменить продукт", edit_product_path(@product), class: "btn btn-secondary" %>
+  |
+  <%= link_to "К списку продуктов", products_path, class: "btn btn-secondary" %>
+  |
+  <%= button_to "Удалить продукт", @product, method: :delete, data: { confirm: 'Вы уверены?' }, class: "btn btn-danger" %>
+</div>

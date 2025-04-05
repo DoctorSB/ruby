@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Product Management</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbo-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbo-track': 'reload', defer: true %>
+
+    <style>
+      header {
+        background-color: #f8f8f8;
+        padding: 15px 30px;
+        border-bottom: 1px solid #ddd;
+      }
+
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .nav-left,
+      .nav-right {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+
+      .nav-right {
+        margin-left: auto;
+      }
+
+      .search-form {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+      }
+
+      .search-form input,
+      .search-form select {
+        padding: 5px 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+      }
+
+      .search-form button {
+        padding: 5px 15px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .user-info {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .user-icon {
+        color: #007bff;
+      }
+
+      .logout-form {
+        display: inline;
+      }
+
+      .logout-form input[type="submit"] {
+        padding: 3px 8px;
+        border-radius: 4px;
+        background: white;
+        border: 1px solid #ccc;
+        cursor: pointer;
+      }
+
+      .admin-link a {
+        color: #dc3545;
+        font-weight: bold;
+        text-decoration: none;
+      }
+
+      .admin-link a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <nav>
+        <div class="nav-left">
+          <%= link_to 'Главная', root_path %>
+          <%= link_to 'Продукты', products_path %>
+          <% if user_signed_in? %>
+            <%= link_to 'Добавить', new_product_path %>
+          <% end %>
+          <form class="search-form" action="<%= products_path %>" method="get">
+            <input type="text" name="q" placeholder="Найти продукт" value="<%= params[:q] %>">
+            <select name="category">
+              <option value="">Все категории</option>
+              <% @categories&.each do |category| %>
+                <option value="<%= category %>" <%= 'selected' if params[:category] == category %>><%= category %></option>
+              <% end %>
+            </select>
+            <button type="submit">Искать</button>
+          </form>
+        </div>
+
+        <div class="nav-right">
+          <% if user_signed_in? %>
+            <div class="user-info">
+              <span class="user-icon">👤</span>
+              <span><%= current_user.email %> (<%= current_user.role.presence || "-" %>)</span>
+
+              <% if current_user.admin? %>
+                <span class="admin-link"><%= link_to "Админ-панель", admin_users_path %></span>
+              <% end %>
+
+              <%= form_with url: destroy_user_session_path, method: :delete, class: 'logout-form' do %>
+                <%= submit_tag 'Выйти' %>
+              <% end %>
+            </div>
+          <% else %>
+            <%= link_to 'Войти', new_user_session_path %> |
+            <%= link_to 'Регистрация', new_user_registration_path %>
+          <% end %>
+        </div>
+      </nav>
+    </header>
+
+    <main style="padding: 20px;">
+      <% if notice %>
+        <p style="color: green;"><%= notice %></p>
+      <% end %>
+      <% if alert %>
+        <p style="color: red;"><%= alert %></p>
+      <% end %>
+
+      <%= yield %>
+    </main>
+  </body>
+</html>

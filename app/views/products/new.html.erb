@@ -1,0 +1,11 @@
+<% content_for :title, "Новый продукт" %>
+
+<h1>Добавить продукт</h1>
+
+<%= render "form", product: @product %>
+
+<br>
+
+<div>
+  <%= link_to "Назад", products_path %>
+</div>

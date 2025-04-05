@@ -1,0 +1,148 @@
+/* Общие настройки */
+body {
+    font-family: 'Arial', sans-serif; /* Используем современный шрифт */
+    background-image: url('https://pic.rutubelist.ru/video/2024-11-27/23/98/2398e97bb64e6d34b95afa433c4c28e7.jpg');
+    background-size: cover; /* Покрытие всего экрана фоном */
+    background-position: center center;
+    color: #333; /* Тёмный цвет текста для хорошей читаемости */
+    margin: 0;
+    padding: 0;
+}
+
+/* Хедер */
+header {
+    background-color: rgba(255, 255, 255, 0.9); /* Легкий полупрозрачный фон */
+    padding: 30px 0;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Мягкая тень */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+ul {
+    list-style: none; /* Убираем точки или другие маркеры */
+    padding: 0; /* Убираем внутренний отступ */
+    margin: 0; /* Убираем внешний отступ */
+}
+
+
+/* Навигация */
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline-block;
+    margin-right: 30px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: inherit; /* Унаследованный цвет текста */
+    font-weight: normal;
+    padding: 0;
+    border: none;
+    transition: none;
+}
+
+/* Основной контент */
+main {
+    text-align: center;
+    margin: 40px auto;
+    padding: 40px;
+    background-color: rgba(230, 234, 237, 0.8); /* Легкий полупрозрачный фон */
+    border-radius: 10px;
+    width: 80%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Поля ввода */
+.field {
+    margin-bottom: 20px;
+}
+
+.field label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+    font-size: 16px;
+}
+
+.field input,
+.field textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    background-color: #fff;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+.field input:focus,
+.field textarea:focus {
+    border-color: #024d9e; /* Цвет рамки при фокусе */
+    outline: none;
+}
+
+a {
+    text-decoration: none; /* Убираем подчеркивание */
+    color: inherit; /* Наследуем цвет текста от родителя */
+    cursor: pointer; /* Устанавливаем стандартный курсор для ссылок */
+}
+
+/* Стиль для контейнера продукта */
+.product-container {
+    border: 1px solid #ccc; /* Рамка вокруг контейнера */
+    border-radius: 10px; /* Закругленные углы */
+    padding: 20px; /* Отступ внутри контейнера */
+    margin-bottom: 20px; /* Отступ между элементами */
+    background-color: #f9f9f9; /* Светлый фон */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Легкая тень */
+}
+
+/* Стили для заголовков внутри контейнера */
+.product-container strong {
+    font-size: 16px; /* Увеличенный шрифт */
+    color: #024d9e; /* Синий цвет заголовков */
+}
+
+/* Стили для текста */
+.product-container p {
+    margin: 10px 0; /* Отступы между абзацами */
+    font-size: 14px; /* Размер шрифта для текста */
+    color: #333; /* Цвет текста */
+}
+
+
+/* Кнопки */
+.actions {
+    margin-top: 20px;
+}
+
+.actions input {
+    background-color: #024d9e;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.actions input:hover {
+    background-color: #023c76;
+}
+
+.actions input:active {
+    background-color: #022a57; /* Темный цвет при нажатии */
+}
+
+.actions input:disabled {
+    background-color: #aaa; /* Цвет для неактивных кнопок */
+    cursor: not-allowed;
+}

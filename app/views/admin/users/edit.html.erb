@@ -1,0 +1,12 @@
+<h1>Изменить роль для <%= @user.email %></h1>
+
+<%= form_with model: [:admin, @user], local: true do |form| %>
+  <div>
+    <%= form.label :role %><br>
+    <%= form.select :role, User.roles.keys.map { |r| [r.humanize, r] } %>
+  </div>
+  <br>
+  <div>
+    <%= form.submit "Сохранить" %>
+  </div>
+<% end %>
