@@ -51,7 +51,9 @@ class ProductsController < ApplicationController
 
   def set_product
     @product = Product.find(params[:id])
+    @product.comments = @product.comments.includes(:user)  # Ensure comments are loaded along with the product
   end
+  
 
   def authorize_user!
     return if current_user.admin? || current_user.moderator?
@@ -61,6 +63,7 @@ class ProductsController < ApplicationController
   end
 
   def product_params
-    params.require(:product).permit(:name, :description, :price, :category, :comments)
+    params.require(:product).permit(:name, :description, :price, :category)
   end
+  
 end

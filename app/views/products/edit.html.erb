@@ -1,12 +1,9 @@
-<% content_for :title, "Исправление" %>
+<% content_for :title, @product.new_record? ? "Новый продукт" : "Редактирование" %>
 
-<h1>Editing product</h1>
+<div class="container">
+  <h1><%= @product.new_record? ? "Добавить продукт" : "Редактировать продукт" %></h1>
 
-<%= render "form", product: @product %>
+  <%= render "form", product: @product %>
 
-<br>
-
-<div>
-  <%= link_to "Подробнее", @product %> |
-  <%= link_to "Назад", products_path %>
+  <%= link_to "Назад", products_path, class: "back-link" %>
 </div>

@@ -1,16 +1,21 @@
-<p style="color: green"><%= notice %></p>
+<% content_for :title, "Все товары" %>
 
-<% content_for :title, "Продукты" %>
+<div class="products-container">
+  <h1 class="products-title">Все товары</h1>
 
-<h1>Товары</h1>
+  <div class="products-grid">
+    <% @products.each do |product| %>
+      <div class="product-card">
+        <div class="product-header">
+          <h3 class="product-name"><%= product.name %></h3>
+          <span class="product-price"><%= number_to_currency(product.price, unit: "₽", format: "%n %u") %></span>
+        </div>
+        <span class="product-category"><%= product.category %></span>
+        <p class="product-description"><%= truncate(product.description, length: 100) %></p>
+        <%= link_to "Подробнее", product, class: "product-link" %>
+      </div>
+    <% end %>
+  </div>
 
-<div id="products">
-  <% @products.each do |product| %>
-    <%= render product %>
-    <p>
-      <%= link_to "Подробнее", product %>
-    </p>
-  <% end %>
+  <%= link_to "Добавить продукт", new_product_path, class: "add-product-btn" %>
 </div>
-
-<%= link_to "Добавить", new_product_path %>

@@ -1,0 +1,19 @@
+<%= form_with(model: [:admin, category], local: true) do |form| %>
+  <% if category.errors.any? %>
+    <div class="alert alert-danger">
+      <h4>Ошибки:</h4>
+      <ul>
+        <% category.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :name, "Название категории" %>
+    <%= form.text_field :name, class: 'form-control' %>
+  </div>
+
+  <%= form.submit 'Сохранить', class: 'btn btn-primary' %>
+<% end %>

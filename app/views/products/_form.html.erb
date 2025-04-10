@@ -1,7 +1,7 @@
-<%= form_with(model: product, local: true) do |form| %>
+<%= form_with(model: product, local: true, class: "product-form-card") do |form| %>
   <% if product.errors.any? %>
-    <div id="error_explanation">
-      <h2>Эти ошибки не позволили сохранить продукт:</h2>
+    <div class="product-form-errors">
+      <h3>Ошибки:</h3>
       <ul>
         <% product.errors.full_messages.each do |message| %>
           <li><%= message %></li>
@@ -10,32 +10,25 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name, "Имя" %>
-    <%= form.text_field :name, placeholder: "Введите название продукта" %>
+  <div class="product-form-group">
+    <%= form.label :name, "Название", class: "product-form-label" %>
+    <%= form.text_field :name, class: "product-form-input" %>
   </div>
 
-  <div class="field">
-    <%= form.label :description, "Описание" %>
-    <%= form.text_area :description, placeholder: "Введите описание продукта" %>
+  <div class="product-form-group">
+    <%= form.label :description, "Описание", class: "product-form-label" %>
+    <%= form.text_area :description, rows: 4, class: "product-form-input" %>
   </div>
 
-  <div class="field">
-    <%= form.label :price, "Цена (в рублях)" %>
-    <%= form.number_field :price, step: 0.01, placeholder: "Укажите цену продукта" %>
+  <div class="product-form-group">
+    <%= form.label :price, "Цена (₽)", class: "product-form-label" %>
+    <%= form.number_field :price, step: 0.01, class: "product-form-input" %>
   </div>
 
-  <div class="field">
-    <%= form.label :category, "Категория" %>
-    <%= form.select :category, options_for_select(['мокрый', 'сухой', 'вкусный', 'подходит людям'], product.category) %>
+  <div class="product-form-group">
+    <%= form.label :category, "Категория", class: "product-form-label" %>
+    <%= form.select :category, options_for_select(['мокрый', 'сухой', 'вкусный', 'подходит людям'], product.category), {}, class: "product-form-select" %>
   </div>
 
-  <div class="field">
-    <%= form.label :comments, "Комментарий" %>
-    <%= form.text_area :comments, placeholder: "Добавьте комментарий (необязательно)" %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit "Сохранить продукт", class: "btn btn-primary" %>
-  </div>
+  <%= form.submit "Сохранить", class: "product-form-submit" %>
 <% end %>

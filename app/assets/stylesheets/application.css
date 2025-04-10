@@ -1,4 +1,9 @@
 /* Общие настройки */
+/*
+ *= require_self
+ *= require products
+ */
+
 body {
     font-family: 'Arial', sans-serif; /* Используем современный шрифт */
     background-image: url('https://pic.rutubelist.ru/video/2024-11-27/23/98/2398e97bb64e6d34b95afa433c4c28e7.jpg');

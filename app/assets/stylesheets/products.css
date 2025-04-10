@@ -1,0 +1,614 @@
+/*
+ *= require_self
+ *= require products
+ */
+
+/* products.css */
+.products-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+  
+  .products-title {
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2.2rem;
+  }
+  
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+  
+  .product-card {
+    background: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  
+  .product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  }
+  
+  .product-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+  }
+  
+  .product-name {
+    color: #3498db;
+    margin: 0;
+    font-size: 1.2rem;
+  }
+  
+  .product-price {
+    font-weight: bold;
+    color: #27ae60;
+  }
+  
+  .product-category {
+    display: inline-block;
+    background: #f1c40f;
+    color: white;
+    padding: 0.2rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+  }
+  
+  .product-description {
+    color: #7f8c8d;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+  }
+  
+  .product-link {
+    display: inline-block;
+    background: #3498db;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  
+  .product-link:hover {
+    background: #2980b9;
+  }
+  
+  .add-product-btn {
+    display: block;
+    width: fit-content;
+    margin: 0 auto;
+    background: #2ecc71;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background 0.2s;
+  }
+  
+  .add-product-btn:hover {
+    background: #27ae60;
+  }
+
+  /* Форма продукта */
+.product-form-card {
+    background: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    max-width: 600px;
+    margin: 2rem auto;
+  }
+  
+  .product-form-errors {
+    background: #fdecea;
+    padding: 1rem;
+    border-radius: 6px;
+    margin-bottom: 1.5rem;
+    border-left: 4px solid #e74c3c;
+    color: #c0392b;
+  }
+  
+  .product-form-errors h3 {
+    margin-top: 0;
+    color: #e74c3c;
+  }
+  
+  .product-form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  .product-form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #2c3e50;
+    font-weight: 500;
+  }
+  
+  .product-form-input,
+  .product-form-select {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: all 0.2s;
+  }
+  
+  .product-form-input:focus,
+  .product-form-select:focus {
+    border-color: #3498db;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(52,152,219,0.1);
+  }
+  
+  .product-form-select {
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 0.8rem center;
+    background-size: 1rem;
+  }
+  
+  .product-form-submit {
+    display: inline-block;
+    background: #2ecc71;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  
+  .product-form-submit:hover {
+    background: #27ae60;
+  }
+
+  /* Страница продукта */
+.product-show-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.product-card.detailed {
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.product-card.detailed .product-header {
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.product-card.detailed .product-name {
+  font-size: 1.8rem;
+  margin: 0;
+}
+
+.product-card.detailed .product-description {
+  margin: 2rem 0;
+}
+
+.product-card.detailed .product-description h3 {
+  color: #2c3e50;
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+}
+
+.product-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid #eee;
+}
+
+.product-edit-btn,
+.product-delete-btn,
+.product-back-btn {
+  padding: 0.6rem 1.2rem;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.product-edit-btn {
+  background: #f39c12;
+  color: white;
+}
+
+.product-delete-btn {
+  background: #e74c3c;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.product-back-btn {
+  background: #ecf0f1;
+  color: #7f8c8d;
+}
+
+/* Секция комментариев */
+.comments-section {
+  margin-top: 3rem;
+}
+
+.comments-title {
+  font-size: 1.5rem;
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
+}
+
+.comment-form {
+  margin-bottom: 2rem;
+}
+
+.comment-input {
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-family: inherit;
+  margin-bottom: 1rem;
+  min-height: 100px;
+}
+
+.comment-submit-btn {
+  background: #2ecc71;
+  color: white;
+  padding: 0.7rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.comment-submit-btn:hover {
+  background: #27ae60;
+}
+
+.login-prompt {
+  background: #f8f9fa;
+  padding: 1rem;
+  border-radius: 4px;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.login-link {
+  color: #3498db;
+  text-decoration: none;
+}
+
+.comment-card {
+  background: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.comment-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.comment-author {
+  font-weight: bold;
+  color: #3498db;
+}
+
+.comment-time {
+  color: #95a5a6;
+  font-size: 0.9rem;
+}
+
+.comment-content {
+  line-height: 1.5;
+}
+
+
+/* Продающий дизайн товара */
+.product-showcase {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    font-family: 'Segoe UI', Roboto, sans-serif;
+  }
+  
+  .product-hero {
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    border-radius: 12px;
+    padding: 2.5rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    text-align: center;
+  }
+  
+  .product-badge {
+    display: inline-block;
+    background: #3498db;
+    color: white;
+    padding: 0.3rem 1.2rem;
+    border-radius: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+  }
+  
+  .product-title {
+    font-size: 2.2rem;
+    color: #2c3e50;
+    margin: 0.5rem 0 1.5rem;
+  }
+  
+  .product-pricing {
+    margin: 1.5rem 0;
+  }
+  
+  .price {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #27ae60;
+  }
+  
+  .original-price {
+    text-decoration: line-through;
+    color: #95a5a6;
+    margin-left: 0.8rem;
+    font-size: 1.2rem;
+  }
+  
+  .discount-badge {
+    display: inline-block;
+    background: #e74c3c;
+    color: white;
+    padding: 0.2rem 0.8rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    margin-left: 0.8rem;
+  }
+  
+  .product-highlights {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+  }
+  
+  .highlight-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #2c3e50;
+    font-weight: 500;
+  }
+  
+  .highlight-item i {
+    color: #2ecc71;
+  }
+  
+  .product-description-section {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  }
+  
+  .product-description-section h2 {
+    color: #2c3e50;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .product-description-section h2 i {
+    color: #3498db;
+  }
+  
+  .description-content {
+    line-height: 1.7;
+    color: #34495e;
+  }
+  
+  .cta-section {
+    text-align: center;
+    margin: 3rem 0;
+  }
+  
+  .cta-button {
+    background: #e67e22;
+    color: white;
+    border: none;
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(230, 126, 34, 0.3);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-weight: 600;
+  }
+  
+  .cta-button:hover {
+    background: #d35400;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(230, 126, 34, 0.4);
+  }
+  
+  .trust-badges {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 1.5rem;
+    color: #7f8c8d;
+    font-size: 0.9rem;
+  }
+  
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .trust-item i {
+    color: #3498db;
+  }
+  
+  .admin-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid #eee;
+  }
+  
+  .edit-btn, .delete-btn, .back-link {
+    padding: 0.6rem 1.2rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .edit-btn {
+    background: #3498db;
+    color: white;
+  }
+  
+  .delete-btn {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .back-link {
+    background: #ecf0f1;
+    color: #7f8c8d;
+  }
+
+/* Стили для комментариев */
+.comments-section {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid #f0f0f0;
+  }
+  
+  .comments-title {
+    color: #2c3e50;
+    margin-bottom: 1.5rem;
+  }
+  
+  .comment-form {
+    margin-bottom: 2rem;
+  }
+  
+  .comment-input {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-family: inherit;
+    resize: vertical;
+    min-height: 100px;
+    margin-bottom: 1rem;
+    transition: border 0.2s;
+  }
+  
+  .comment-input:focus {
+    border-color: #3498db;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+  }
+  
+  .comment-submit {
+    background: #2ecc71;
+    color: white;
+    padding: 0.7rem 1.5rem;
+    border: none;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  
+  .comment-submit:hover {
+    background: #27ae60;
+  }
+  
+  .login-prompt {
+    text-align: center;
+    color: #7f8c8d;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 6px;
+  }
+  
+  .login-prompt a {
+    color: #3498db;
+    text-decoration: none;
+  }
+  
+  .comments-list {
+    margin-top: 2rem;
+  }
+  
+  .comment {
+    background: white;
+    border: 1px solid #eee;
+    border-radius: 6px;
+    padding: 1.2rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+  }
+  
+  .comment-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+  }
+  
+  .comment-author {
+    font-weight: bold;
+    color: #3498db;
+  }
+  
+  .comment-time {
+    color: #95a5a6;
+  }
+  
+  .comment-content {
+    line-height: 1.5;
+    color: #34495e;
+  }

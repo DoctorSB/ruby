@@ -1,18 +1,52 @@
-<p class="notice" style="color: green"><%= notice %></p>
-
-<h1><%= @product.name %></h1>
+<% content_for :title, @product.name %>
 
 <div class="product-container">
-  <p><strong>Описание:</strong> <%= @product.description %></p>
-  <p><strong>Цена:</strong> <%= number_to_currency(@product.price, unit: "руб.", format: "%n %u") %></p>
-  <p><strong>Категория:</strong> <%= @product.category %></p>
-  <p><strong>Комментарий:</strong> <%= @product.comments.present? ? @product.comments : "Комментариев пока нет" %></p>
-</div>
+  <!-- Основная информация о товаре -->
+  <div class="product-header">
+    <span class="product-category"><%= @product.category %></span>
+    <h1 class="product-name"><%= @product.name %></h1>
+    <div class="product-price"><%= number_to_currency(@product.price, unit: "₽", format: "%n %u") %></div>
+  </div>
 
-<div class="actions">
-  <%= link_to "Изменить продукт", edit_product_path(@product), class: "btn btn-secondary" %>
-  |
-  <%= link_to "К списку продуктов", products_path, class: "btn btn-secondary" %>
-  |
-  <%= button_to "Удалить продукт", @product, method: :delete, data: { confirm: 'Вы уверены?' }, class: "btn btn-danger" %>
+  <!-- Описание товара -->
+  <div class="product-description">
+    <h3>Описание</h3>
+    <p><%= @product.description %></p>
+  </div>
+
+  <!-- Кнопки управления -->
+  <div class="product-actions">
+    <% if @product.user == current_user || current_user&.admin? %>
+      <%= link_to "Редактировать", edit_product_path(@product), class: "btn-edit" %>
+      <%= button_to "Удалить", @product, method: :delete, 
+          data: { confirm: "Уверены?" }, 
+          class: "btn-delete" %>
+    <% end %>
+    <%= link_to "Назад", products_path, class: "btn-back" %>
+  </div>
+
+  <!-- Секция комментариев -->
+  <div class="comments-section">
+    <h3 class="comments-title">Комментарии (<%= @product.comments.count %>)</h3>
+
+    <% if user_signed_in? %>
+      <%= form_with(model: [@product, @product.comments.build], local: true, class: "comment-form") do |form| %>
+        <%= form.text_area :content, class: "comment-input", placeholder: "Напишите комментарий...", rows: 3 %>
+        <%= form.submit "Отправить", class: "comment-submit" %>
+      <% end %>
+    <% else %>
+      <p class="login-prompt"><%= link_to "Войдите", new_user_session_path %> чтобы оставить комментарий</p>
+    <% end %>
+
+    <div class="comments-list">
+      <% @product.comments.each do |comment| %>
+        <div class="comment">
+          <div class="comment-header">
+            <span class="comment-author"><%= comment.user&.email || "Гость" %></span>
+          </div>
+          <div class="comment-content"><%= comment.content %></div>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>
